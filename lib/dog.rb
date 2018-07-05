@@ -45,6 +45,7 @@ class Dog
   end
 
   def self.find_by_id
+    dog = Dog.new()
   end
 
   def self.find_or_create_by
@@ -53,7 +54,16 @@ class Dog
   def self.new_from_db
   end
 
-  def self.find_by_name
+  def self.find_by_name(name)
+    sql = <<-SQL
+      SELECT *
+      FROM students
+      WHERE name = ?
+      LIMIT 1
+    SQL
+    DB[:conn].execute(sql, name).map do |row|
+     self.new_from_db(row)
+    end
   end
 
   def update
