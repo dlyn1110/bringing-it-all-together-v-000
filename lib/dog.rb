@@ -39,8 +39,8 @@ class Dog
     self
    end
 
-  def self.create
-    
+  def self.create(name:, breed:)
+
   end
 
   def self.find_by_id
